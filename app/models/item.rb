@@ -16,7 +16,7 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :condition
-  belongs_to :deliveryfee
+  belongs_to :delivery_fee
   belongs_to :prefecture
-  belongs_to :deliverydate
+  belongs_to :delivery_date
 end
