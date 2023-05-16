@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   def index
-    @items = Item.all
+    # @items = Item.all
   end
 
   def new
@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
+    @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
     else
@@ -19,6 +19,6 @@ class ItemsController < ApplicationController
 
   private 
   def item_params
-    params.require(:item).permit(:image, :title, :description, :category_id, :condition_id, :delivery_fee_id, :prefecture_id, :delivery_date_id, :price, :user).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :title, :description, :category_id, :condition_id, :delivery_fee_id, :prefecture_id, :delivery_date_id, :price).merge(user_id: current_user.id)
   end
 end
