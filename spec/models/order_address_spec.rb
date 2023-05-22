@@ -59,7 +59,7 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phonenumber is invalid")
       end
-      it 'phonenumberが10桁以上11桁以内でないと購入できない' do
+      it 'phonenumberが12桁以上では購入できない' do
         @order_address.phonenumber = '090123456789'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phonenumber is invalid")
