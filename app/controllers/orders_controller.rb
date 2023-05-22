@@ -6,7 +6,10 @@ class OrdersController < ApplicationController
     @order_address = OrderAddress.new
     if current_user == @item.user
       redirect_to root_path
+    elsif @item.order.present?
+      redirect_to root_path
     end
+
   end
 
   
