@@ -54,8 +54,13 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
       end
+      it 'phonenumberが9桁以下では購入できない' do
+        @order_address.phonenumber = '090123456'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phonenumber is invalid")
+      end
       it 'phonenumberが10桁以上11桁以内でないと購入できない' do
-        @order_address.phonenumber = '090-1234-5678'
+        @order_address.phonenumber = '090123456789'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phonenumber is invalid")
       end
@@ -68,6 +73,16 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.token = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'userが紐付いていなければ購入できない' do
+        @order_address.user_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐付いていなければ購入できない' do
+        @order_address.item_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
