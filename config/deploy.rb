@@ -3,6 +3,7 @@ lock '3.17.3'
 
 set :application, 'furima-39308'
 set :repo_url, 'git@github.com:Suchon4031/furima-39308.git'
+set :branch, 'main'
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
@@ -23,7 +24,7 @@ namespace :deploy do
     invoke 'unicorn:restart'
   end
 end
-# Default branch is :main
+# Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
